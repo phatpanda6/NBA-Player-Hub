@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+nav {
+  height: 3rem;
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+
+.nav-logo {
+  height: 2rem;
+  max-width: 100%;
+  object-fit: contain;
+  margin-right: 1rem;
+}
+
+main {
+  width: 100%;
+}
+
+/* Container: max width and center content */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem; 
+}
+
+/* ===== Player Title Section ===== */
+
+/* Full width background wrapper */
+.player-title-bg-wrapper {
+  background-color: aliceblue;
+  padding: 1rem 0 2rem 0; /* vertical padding */
+}
+
+.player_title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.player-headshot {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.player-title-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player_title-info > h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0.25rem 0;
+}
+
+.player_title-info > h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+/* ===== Player Details Section ===== */
+
+.player-details-bg-wrapper {
+  background-color: #dbe8f0;
+  padding: 2rem 0;
+}
+
+/* Grid container for 4 boxes */
+.player-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 1rem;
+}
+
+/* Each box style */
+.stat-box {
+  background-color: #1e293b; /* dark background for contrast */
+  color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  cursor: not-allowed;
+}
