@@ -18,7 +18,6 @@ nav {
   font-weight: bold;
 }
 
-
 .nav-logo {
   height: 2rem;
   max-width: 100%;
@@ -34,7 +33,7 @@ main {
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 1rem; 
+  padding: 0 1rem;
 }
 
 /* ===== Player Title Section ===== */
@@ -99,4 +98,245 @@ main {
   text-align: center;
   font-size: 1rem;
   cursor: not-allowed;
+}
+
+/* ===== Dynamic styling depending on the team ===== */
+/* 76ers */
+.sixers-statBox-bg {
+  background-color: #ed174c; /* red */
+}
+.sixers-details-bg {
+  background-color: #006bb6; /* blue */
+}
+
+/* Bucks */
+.bucks-statBox-bg {
+  background-color: #00471b; /* green */
+}
+.bucks-details-bg {
+  background-color: #eee1c6; /* cream */
+}
+
+/* Bulls */
+.bulls-statBox-bg {
+  background-color: #ce1141; /* red */
+}
+.bulls-details-bg {
+  background-color: #000000; /* black */
+}
+
+/* Cavaliers */
+.cavaliers-statBox-bg {
+  background-color: #860038; /* wine */
+}
+.cavaliers-details-bg {
+  background-color: #fdbb30; /* gold */
+}
+
+/* Celtics */
+.celtics-statBox-bg {
+  background-color: #008348; /* green */
+}
+.celtics-details-bg {
+  background-color: #bb9753; /* gold */
+}
+
+/* Clippers */
+.clippers-statBox-bg {
+  background-color: #c8102e; /* red */
+}
+.clippers-details-bg {
+  background-color: #1d428a; /* blue */
+}
+
+/* Grizzlies */
+.grizzlies-statBox-bg {
+  background-color: #5d76a9; /* light blue */
+}
+.grizzlies-details-bg {
+  background-color: #12173f; /* dark blue */
+}
+
+/* Hawks */
+.hawks-statBox-bg {
+  background-color: #e03a3e; /* red */
+}
+.hawks-details-bg {
+  background-color: #c1c1c1; /* gray */
+}
+
+/* Heat */
+.heat-statBox-bg {
+  background-color: #98002e; /* red */
+}
+.heat-details-bg {
+  background-color: #f9a01b; /* yellow */
+}
+
+/* Hornets */
+.hornets-statBox-bg {
+  background-color: #1d1160; /* purple */
+}
+.hornets-details-bg {
+  background-color: #00788c; /* teal */
+}
+
+/* Jazz */
+.jazz-statBox-bg {
+  background-color: #002b5c; /* navy */
+}
+.jazz-details-bg {
+  background-color: #f9a01b; /* gold */
+}
+
+/* Kings */
+.kings-statBox-bg {
+  background-color: #5a2d81; /* purple */
+}
+.kings-details-bg {
+  background-color: #63727a; /* gray */
+}
+
+/* Knicks */
+.knicks-statBox-bg {
+  background-color: #006bb6; /* blue */
+}
+.knicks-details-bg {
+  background-color: #f58426; /* orange */
+}
+
+/* Lakers */
+.lakers-statBox-bg {
+  background-color: #552583; /* purple */
+}
+.lakers-details-bg {
+  background-color: #fdb927; /* gold */
+}
+
+/* Magic */
+.magic-statBox-bg {
+  background-color: #0077c0; /* blue */
+}
+.magic-details-bg {
+  background-color: #c4ced3; /* silver */
+}
+
+/* Mavericks */
+.mavericks-statBox-bg {
+  background-color: #00538c; /* blue */
+}
+.mavericks-details-bg {
+  background-color: #b8c4ca; /* silver */
+}
+
+/* Nets */
+.nets-statBox-bg {
+  background-color: #000000; /* black */
+}
+.nets-details-bg {
+  background-color: #ffffff; /* white */
+}
+
+/* Nuggets */
+.nuggets-statBox-bg {
+  background-color: #0e2240; /* navy */
+}
+.nuggets-details-bg {
+  background-color: #fec524; /* yellow */
+}
+
+/* Pacers */
+.pacers-statBox-bg {
+  background-color: #002d62; /* navy */
+}
+.pacers-details-bg {
+  background-color: #fdbb30; /* gold */
+}
+
+/* Pelicans */
+.pelicans-statBox-bg {
+  background-color: #0c2340; /* navy */
+}
+.pelicans-details-bg {
+  background-color: #c8102e; /* red */
+}
+
+/* Pistons */
+.pistons-statBox-bg {
+  background-color: #c8102e; /* red */
+}
+.pistons-details-bg {
+  background-color: #006bb6; /* blue */
+}
+
+/* Raptors */
+.raptors-statBox-bg {
+  background-color: #ce1141; /* red */
+}
+.raptors-details-bg {
+  background-color: #000000; /* black */
+}
+
+/* Rockets */
+.rockets-statBox-bg {
+  background-color: #ce1141; /* red */
+}
+.rockets-details-bg {
+  background-color: #c4ced3; /* silver */
+}
+
+/* Spurs */
+.spurs-statBox-bg {
+  background-color: #c4ced3; /* silver */
+}
+.spurs-details-bg {
+  background-color: #000000; /* black */
+}
+
+/* Suns */
+.suns-statBox-bg {
+  background-color: #1d1160; /* purple */
+}
+.suns-details-bg {
+  background-color: #e56020; /* orange */
+}
+
+/* Thunder */
+.thunder-statBox-bg {
+  background-color: #007ac1; /* blue */
+}
+.thunder-details-bg {
+  background-color: #ef3b24; /* orange */
+}
+
+/* Timberwolves */
+.timberwolves-statBox-bg {
+  background-color: #0c2340; /* navy */
+}
+.timberwolves-details-bg {
+  background-color: #236192; /* blue */
+}
+
+/* Trail Blazers */
+.trail-blazers-statBox-bg {
+  background-color: #e03a3e; /* red */
+}
+.trail-blazers-details-bg {
+  background-color: #000000; /* black */
+}
+
+/* Warriors */
+.warriors-statBox-bg {
+  background-color: #1d428a; /* blue */
+}
+.warriors-details-bg {
+  background-color: #ffc72c; /* yellow */
+}
+
+/* Wizards */
+.wizards-statBox-bg {
+  background-color: #002b5c; /* navy */
+}
+.wizards-details-bg {
+  background-color: #e31837; /* red */
 }
