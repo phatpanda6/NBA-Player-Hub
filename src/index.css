@@ -25,9 +25,21 @@ nav {
   margin-right: 1rem;
 }
 
+
 main {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align items at the top */
+  height: 100vh;
+  background-color: aliceblue;
+  box-sizing: border-box;
 }
+
+.player-title-bg-wrapper {
+  margin-top: 20vh; 
+}
+
+
 
 /* Container: max width and center content */
 .container {

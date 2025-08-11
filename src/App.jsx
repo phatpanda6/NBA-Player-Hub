@@ -16,7 +16,7 @@ const api = new BalldontlieAPI({
 export default function NbaPlayerSummary() {
   const [player, setPlayer] = useState(null);
 
-  // Used this code to manually match stats id to photo id 
+  // Used this code to manually match stats id to photo id
   // useEffect(() => {
   //   async function fetchPlayer() {
   //     try {
@@ -32,6 +32,9 @@ export default function NbaPlayerSummary() {
   //   }
   //   fetchPlayer();
   // }, []);
+  // Handles the actual API search logic
+
+  
 
   useEffect(() => {
     async function fetchPlayer() {
@@ -49,7 +52,7 @@ export default function NbaPlayerSummary() {
   const nbaPlayerId = player ? playerIdMap[player.id] : null;
 
   //Get the dynamic styling for each player depending gon their team
-  const teamName = player?.team?.name; 
+  const teamName = player?.team?.name;
   const teamClasses = teamColorMap[teamName] || {};
 
   // construct image url only if nbaPlayerId exists
@@ -67,6 +70,7 @@ export default function NbaPlayerSummary() {
         <header></header>
         <section className="search-section container">
           {/* SearchBar component or input */}
+          
         </section>
 
         {/* Player Title full-width background wrapper */}
@@ -103,9 +107,15 @@ export default function NbaPlayerSummary() {
           <section className="player-details-bg container">
             {player ? (
               <div className="player-details-grid">
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>Height: {player.height}</div>
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>Weight: {player.weight}</div>
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>Draft Year: {player.draft_year}</div>
+                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
+                  Height: {player.height}
+                </div>
+                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
+                  Weight: {player.weight}
+                </div>
+                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
+                  Draft Year: {player.draft_year}
+                </div>
                 <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
                   Round: {player.draft_round} | Pick: {player.draft_number}
                 </div>

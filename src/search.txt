@@ -1,0 +1,65 @@
+async function searchPlayerByName(name) {
+    try {
+      const trimmed = name.trim();
+      if (!trimmed) return;
+
+      const parts = trimmed.split(/\s+/);
+      let response;
+
+      if (parts.length === 2) {
+        // If user typed first + last name
+        const [first, last] = parts;
+        response = await api.nba.getPlayers({
+          first_name: first,
+          last_name: last,
+          per_page: 1,
+        });
+      } else {
+        // If user typed one name (matches first OR last)
+        response = await api.nba.getPlayers({
+          search: trimmed,
+          per_page: 10,
+        });
+      }
+
+      if (response.data && response.data.length > 0) {
+        const foundPlayer = response.data[0];
+        const playerDetails = await api.nba.getPlayer(foundPlayer.id);
+        setPlayer(playerDetails.data);
+      } else {
+        setPlayer(null);
+        alert("No player found.");
+      }
+    } catch (error) {
+      console.error("Failed to search player:", error);
+    }
+  }
+
+   // Simple SearchBar component
+  function SearchBar({ onSearch }) {
+    const [query, setQuery] = useState("");
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      if (query.trim()) {
+        onSearch(query);
+        setQuery("");
+      }
+    }
+
+    return (
+      <form onSubmit={handleSubmit} className="search-bar">
+        <input
+          type="text"
+          placeholder="Search NBA Player..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+    );
+  }
+
+
+
+  <SearchBar onSearch={searchPlayerByName} />
