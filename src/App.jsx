@@ -1,132 +1,129 @@
 import { useEffect, useState } from "react";
 import { BalldontlieAPI } from "@balldontlie/sdk";
-import nbaLogo from "./assets/nba.png";
 import { playerIdMap } from "./playerIdMap.js";
 import { teamColorMap } from "./teamMapColor.js";
+
+// Components
+import Navbar from "./components/Navbar.jsx";
+import SearchBar from "./components/SearchBar.jsx";
+import PlayerTitle from "./components/PlayerTitle.jsx";
+import PlayerDetails from "./components/PlayerDetails.jsx";
 
 const api = new BalldontlieAPI({
   apiKey: "43d43dd6-340c-4778-a0be-b4429e2cef26",
 });
 
-//manually align the ids
-//if statement assign teams to a specific background color
-//search function
-//page of players
-
 export default function NbaPlayerSummary() {
   const [player, setPlayer] = useState(null);
-
-  // Used this code to manually match stats id to photo id
-  // useEffect(() => {
-  //   async function fetchPlayer() {
-  //     try {
-  //       const response = await api.nba.getPlayers({
-  //         cursor: 0,  //change this to get the next 100 data
-  //         per_page: 100,
-  //       });
-  //       // setPlayer(response.data);
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.error("Failed to fetch player:", error);
-  //     }
-  //   }
-  //   fetchPlayer();
-  // }, []);
-  // Handles the actual API search logic
-
-  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchPlayer() {
       try {
-        const response = await api.nba.getPlayer(115); // ✅ get a single player by ID
+        setLoading(true);
+        setError(null);
+        const response = await api.nba.getPlayer(115);
         setPlayer(response.data);
-      } catch (error) {
-        console.error("Failed to fetch player:", error);
+      } catch (err) {
+        console.error("Failed to fetch player:", err);
+        setError("Could not load player. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     }
     fetchPlayer();
   }, []);
 
-  // get NBA official player id from mapping
   const nbaPlayerId = player ? playerIdMap[player.id] : null;
-
-  //Get the dynamic styling for each player depending gon their team
   const teamName = player?.team?.name;
   const teamClasses = teamColorMap[teamName] || {};
 
-  // construct image url only if nbaPlayerId exists
   const headshotUrl = nbaPlayerId
     ? `https://cdn.nba.com/headshots/nba/latest/1040x760/${nbaPlayerId}.png`
     : null;
 
+  async function searchPlayerByName(name) {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const trimmed = name.trim();
+      if (!trimmed) return;
+
+      const parts = trimmed.split(/\s+/);
+      let response;
+
+      if (parts.length === 2) {
+        const [first, last] = parts;
+        response = await api.nba.getPlayers({
+          first_name: first,
+          last_name: last,
+          per_page: 1,
+        });
+      } else {
+        response = await api.nba.getPlayers({
+          search: trimmed,
+          per_page: 10,
+        });
+      }
+
+      if (response.data && response.data.length > 0) {
+        const foundPlayer = response.data[0];
+        const playerDetails = await api.nba.getPlayer(foundPlayer.id);
+        setPlayer(playerDetails.data);
+      } else {
+        setPlayer(null);
+        setError("No player found with that name.");
+      }
+    } catch (err) {
+      console.error("Failed to search player:", err);
+
+      if (err.response?.status === 429) {
+        setError("Too many requests to the API. Please wait and try again.");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+      setPlayer(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
-      <nav>
-        <img className="nav-logo" src={nbaLogo} alt="NBA logo" />
-        NBA Player Hub
-      </nav>
+      <Navbar />
+
       <main>
-        <header></header>
-        <section className="search-section container">
-          {/* SearchBar component or input */}
-          
+        {/* FIX: The 'container' class was removed from this section */}
+        <section className="search-section">
+          <SearchBar onSearch={searchPlayerByName} isLoading={loading} />
         </section>
 
-        {/* Player Title full-width background wrapper */}
-        <div className="player-title-bg-wrapper">
-          <section className="player-title-bg container">
-            {player && (
-              <div className="player_title">
-                {headshotUrl && (
-                  <img
-                    src={headshotUrl}
-                    alt={`${player.first_name} ${player.last_name}`}
-                    className="player-headshot"
-                  />
-                )}
-                <div className="player-title-info-wrapper">
-                  <div className="player_title-info">
-                    <h3>
-                      {player?.team?.full_name || "N/A"} | #
-                      {player?.jersey_number || "N/A"} |{" "}
-                      {player?.position || "N/A"}
-                    </h3>
-                    <h2>
-                      {player.first_name} {player.last_name}
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            )}
-          </section>
-        </div>
+        {loading && (
+          <div className="spinner-container">
+            <div className="spinner"></div>
+            <p className="spinner-text">Searching...</p>
+          </div>
+        )}
 
-        {/* Player Details full-width background wrapper */}
-        <div className={`player-details-bg-wrapper ${teamClasses.detailsBg}`}>
-          <section className="player-details-bg container">
-            {player ? (
-              <div className="player-details-grid">
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
-                  Height: {player.height}
-                </div>
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
-                  Weight: {player.weight}
-                </div>
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
-                  Draft Year: {player.draft_year}
-                </div>
-                <div className={`stat-box ${teamClasses.statBoxBg || ""}`}>
-                  Round: {player.draft_round} | Pick: {player.draft_number}
-                </div>
-              </div>
-            ) : (
-              <p>Loading player info...</p>
-            )}
-          </section>
-        </div>
+        {error && <div className="error-message">{error}</div>}
 
-        <footer></footer>
+        {!loading && player && (
+          <>
+            <div className="player-title-bg-wrapper">
+              <section className="player-title-bg container">
+                <PlayerTitle player={player} headshotUrl={headshotUrl} />
+              </section>
+            </div>
+
+            <div className={`player-details-bg-wrapper ${teamClasses.detailsBg}`}>
+              <section className="player-details-bg container">
+                <PlayerDetails player={player} teamClasses={teamClasses} />
+              </section>
+            </div>
+          </>
+        )}
       </main>
     </>
   );

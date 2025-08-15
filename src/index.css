@@ -1,3 +1,4 @@
+/* ===== Global Styles ===== */
 * {
   box-sizing: border-box;
 }
@@ -7,6 +8,36 @@ body {
   font-family: "Inter", Arial, sans-serif;
 }
 
+/* ===== Error Message ===== */
+.error-message {
+  background-color: #ffe5e5;
+  color: #d9534f;
+  border: 1px solid #f5c2c2;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 600px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ===== Layout ===== */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: aliceblue;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== Navbar ===== */
 nav {
   height: 3rem;
   width: 100%;
@@ -25,35 +56,114 @@ nav {
   margin-right: 1rem;
 }
 
+/* ===== Search Bar ===== */
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
 
-main {
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border-radius: 9999px;
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.search-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  background: #1e293b;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.search-bar button:hover {
+  background: #334155;
+}
+
+.search-bar button:active {
+  transform: scale(0.97);
+}
+
+.search-bar input:disabled,
+.search-bar button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner inside button */
+.button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ===== Global Spinner ===== */
+.spinner-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* align items at the top */
-  height: 100vh;
-  background-color: aliceblue;
-  box-sizing: border-box;
+  align-items: center;
+  margin: 1rem 0;
 }
 
-.player-title-bg-wrapper {
-  margin-top: 20vh; 
+.spinner {
+  width: 35px;
+  height: 35px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.5rem;
 }
 
+.spinner-text {
+  font-size: 0.9rem;
+  color: #333;
+}
 
-
-/* Container: max width and center content */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 1rem;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ===== Player Title Section ===== */
-
-/* Full width background wrapper */
 .player-title-bg-wrapper {
   background-color: aliceblue;
-  padding: 1rem 0 2rem 0; /* vertical padding */
+  padding: 1rem 0 2rem 0;
+  margin-top: 5vh;
 }
 
 .player_title {
@@ -88,22 +198,19 @@ main {
 }
 
 /* ===== Player Details Section ===== */
-
 .player-details-bg-wrapper {
   background-color: #dbe8f0;
   padding: 2rem 0;
 }
 
-/* Grid container for 4 boxes */
 .player-details-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-/* Each box style */
 .stat-box {
-  background-color: #1e293b; /* dark background for contrast */
+  background-color: #1e293b;
   color: white;
   border-radius: 8px;
   padding: 1rem;
@@ -112,243 +219,141 @@ main {
   cursor: not-allowed;
 }
 
-/* ===== Dynamic styling depending on the team ===== */
+/* ===== Team Styles ===== */
 /* 76ers */
-.sixers-statBox-bg {
-  background-color: #ed174c; /* red */
-}
-.sixers-details-bg {
-  background-color: #006bb6; /* blue */
-}
-
+.sixers-statBox-bg { background-color: #ed174c; }
+.sixers-details-bg { background-color: #006bb6; }
 /* Bucks */
-.bucks-statBox-bg {
-  background-color: #00471b; /* green */
-}
-.bucks-details-bg {
-  background-color: #eee1c6; /* cream */
-}
-
+.bucks-statBox-bg { background-color: #00471b; }
+.bucks-details-bg { background-color: #eee1c6; }
 /* Bulls */
-.bulls-statBox-bg {
-  background-color: #ce1141; /* red */
-}
-.bulls-details-bg {
-  background-color: #000000; /* black */
-}
-
+.bulls-statBox-bg { background-color: #ce1141; }
+.bulls-details-bg { background-color: #000000; }
 /* Cavaliers */
-.cavaliers-statBox-bg {
-  background-color: #860038; /* wine */
-}
-.cavaliers-details-bg {
-  background-color: #fdbb30; /* gold */
-}
-
+.cavaliers-statBox-bg { background-color: #860038; }
+.cavaliers-details-bg { background-color: #fdbb30; }
 /* Celtics */
-.celtics-statBox-bg {
-  background-color: #008348; /* green */
-}
-.celtics-details-bg {
-  background-color: #bb9753; /* gold */
-}
-
+.celtics-statBox-bg { background-color: #008348; }
+.celtics-details-bg { background-color: #bb9753; }
 /* Clippers */
-.clippers-statBox-bg {
-  background-color: #c8102e; /* red */
-}
-.clippers-details-bg {
-  background-color: #1d428a; /* blue */
-}
-
+.clippers-statBox-bg { background-color: #c8102e; }
+.clippers-details-bg { background-color: #1d428a; }
 /* Grizzlies */
-.grizzlies-statBox-bg {
-  background-color: #5d76a9; /* light blue */
-}
-.grizzlies-details-bg {
-  background-color: #12173f; /* dark blue */
-}
-
+.grizzlies-statBox-bg { background-color: #5d76a9; }
+.grizzlies-details-bg { background-color: #12173f; }
 /* Hawks */
-.hawks-statBox-bg {
-  background-color: #e03a3e; /* red */
-}
-.hawks-details-bg {
-  background-color: #c1c1c1; /* gray */
-}
-
+.hawks-statBox-bg { background-color: #e03a3e; }
+.hawks-details-bg { background-color: #c1c1c1; }
 /* Heat */
-.heat-statBox-bg {
-  background-color: #98002e; /* red */
-}
-.heat-details-bg {
-  background-color: #f9a01b; /* yellow */
-}
-
+.heat-statBox-bg { background-color: #98002e; }
+.heat-details-bg { background-color: #f9a01b; }
 /* Hornets */
-.hornets-statBox-bg {
-  background-color: #1d1160; /* purple */
-}
-.hornets-details-bg {
-  background-color: #00788c; /* teal */
-}
-
+.hornets-statBox-bg { background-color: #1d1160; }
+.hornets-details-bg { background-color: #00788c; }
 /* Jazz */
-.jazz-statBox-bg {
-  background-color: #002b5c; /* navy */
-}
-.jazz-details-bg {
-  background-color: #f9a01b; /* gold */
-}
-
+.jazz-statBox-bg { background-color: #002b5c; }
+.jazz-details-bg { background-color: #f9a01b; }
 /* Kings */
-.kings-statBox-bg {
-  background-color: #5a2d81; /* purple */
-}
-.kings-details-bg {
-  background-color: #63727a; /* gray */
-}
-
+.kings-statBox-bg { background-color: #5a2d81; }
+.kings-details-bg { background-color: #63727a; }
 /* Knicks */
-.knicks-statBox-bg {
-  background-color: #006bb6; /* blue */
-}
-.knicks-details-bg {
-  background-color: #f58426; /* orange */
-}
-
+.knicks-statBox-bg { background-color: #006bb6; }
+.knicks-details-bg { background-color: #f58426; }
 /* Lakers */
-.lakers-statBox-bg {
-  background-color: #552583; /* purple */
-}
-.lakers-details-bg {
-  background-color: #fdb927; /* gold */
-}
-
+.lakers-statBox-bg { background-color: #552583; }
+.lakers-details-bg { background-color: #fdb927; }
 /* Magic */
-.magic-statBox-bg {
-  background-color: #0077c0; /* blue */
-}
-.magic-details-bg {
-  background-color: #c4ced3; /* silver */
-}
-
+.magic-statBox-bg { background-color: #0077c0; }
+.magic-details-bg { background-color: #c4ced3; }
 /* Mavericks */
-.mavericks-statBox-bg {
-  background-color: #00538c; /* blue */
-}
-.mavericks-details-bg {
-  background-color: #b8c4ca; /* silver */
-}
-
+.mavericks-statBox-bg { background-color: #00538c; }
+.mavericks-details-bg { background-color: #b8c4ca; }
 /* Nets */
-.nets-statBox-bg {
-  background-color: #000000; /* black */
-}
-.nets-details-bg {
-  background-color: #ffffff; /* white */
-}
-
+.nets-statBox-bg { background-color: #000000; }
+.nets-details-bg { background-color: #ffffff; }
 /* Nuggets */
-.nuggets-statBox-bg {
-  background-color: #0e2240; /* navy */
-}
-.nuggets-details-bg {
-  background-color: #fec524; /* yellow */
-}
-
+.nuggets-statBox-bg { background-color: #0e2240; }
+.nuggets-details-bg { background-color: #fec524; }
 /* Pacers */
-.pacers-statBox-bg {
-  background-color: #002d62; /* navy */
-}
-.pacers-details-bg {
-  background-color: #fdbb30; /* gold */
-}
-
+.pacers-statBox-bg { background-color: #002d62; }
+.pacers-details-bg { background-color: #fdbb30; }
 /* Pelicans */
-.pelicans-statBox-bg {
-  background-color: #0c2340; /* navy */
-}
-.pelicans-details-bg {
-  background-color: #c8102e; /* red */
-}
-
+.pelicans-statBox-bg { background-color: #0c2340; }
+.pelicans-details-bg { background-color: #c8102e; }
 /* Pistons */
-.pistons-statBox-bg {
-  background-color: #c8102e; /* red */
-}
-.pistons-details-bg {
-  background-color: #006bb6; /* blue */
-}
-
+.pistons-statBox-bg { background-color: #c8102e; }
+.pistons-details-bg { background-color: #006bb6; }
 /* Raptors */
-.raptors-statBox-bg {
-  background-color: #ce1141; /* red */
-}
-.raptors-details-bg {
-  background-color: #000000; /* black */
-}
-
+.raptors-statBox-bg { background-color: #ce1141; }
+.raptors-details-bg { background-color: #000000; }
 /* Rockets */
-.rockets-statBox-bg {
-  background-color: #ce1141; /* red */
-}
-.rockets-details-bg {
-  background-color: #c4ced3; /* silver */
-}
-
+.rockets-statBox-bg { background-color: #ce1141; }
+.rockets-details-bg { background-color: #c4ced3; }
 /* Spurs */
-.spurs-statBox-bg {
-  background-color: #c4ced3; /* silver */
-}
-.spurs-details-bg {
-  background-color: #000000; /* black */
-}
-
+.spurs-statBox-bg { background-color: #c4ced3; }
+.spurs-details-bg { background-color: #000000; }
 /* Suns */
-.suns-statBox-bg {
-  background-color: #1d1160; /* purple */
-}
-.suns-details-bg {
-  background-color: #e56020; /* orange */
-}
-
+.suns-statBox-bg { background-color: #1d1160; }
+.suns-details-bg { background-color: #e56020; }
 /* Thunder */
-.thunder-statBox-bg {
-  background-color: #007ac1; /* blue */
-}
-.thunder-details-bg {
-  background-color: #ef3b24; /* orange */
-}
-
+.thunder-statBox-bg { background-color: #007ac1; }
+.thunder-details-bg { background-color: #ef3b24; }
 /* Timberwolves */
-.timberwolves-statBox-bg {
-  background-color: #0c2340; /* navy */
-}
-.timberwolves-details-bg {
-  background-color: #236192; /* blue */
-}
-
+.timberwolves-statBox-bg { background-color: #0c2340; }
+.timberwolves-details-bg { background-color: #236192; }
 /* Trail Blazers */
-.trail-blazers-statBox-bg {
-  background-color: #e03a3e; /* red */
-}
-.trail-blazers-details-bg {
-  background-color: #000000; /* black */
-}
-
+.trail-blazers-statBox-bg { background-color: #e03a3e; }
+.trail-blazers-details-bg { background-color: #000000; }
 /* Warriors */
-.warriors-statBox-bg {
-  background-color: #1d428a; /* blue */
-}
-.warriors-details-bg {
-  background-color: #ffc72c; /* yellow */
+.warriors-statBox-bg { background-color: #1d428a; }
+.warriors-details-bg { background-color: #ffc72c; }
+/* Wizards */
+.wizards-statBox-bg { background-color: #002b5c; }
+.wizards-details-bg { background-color: #e31837; }
+
+/* ===== Responsive Layout ===== */
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .container { max-width: 1100px; }
+  .player-headshot { max-width: 350px; }
 }
 
-/* Wizards */
-.wizards-statBox-bg {
-  background-color: #002b5c; /* navy */
+/* Tablets (768px – 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  nav { padding: 0.75rem; font-size: 0.95rem; }
+  .player_title { gap: 0.75rem; }
+  .player-headshot { max-width: 250px; }
+  .player_title-info > h2 { font-size: 2rem; }
 }
-.wizards-details-bg {
-  background-color: #e31837; /* red */
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  nav { flex-direction: row; justify-content: center; padding: 0.5rem; font-size: 0.9rem; }
+  .nav-logo { height: 1.5rem; margin-right: 0.5rem; }
+
+  .search-section { padding: 0 1rem; }
+
+  .search-bar { max-width: 100%; width: 100%; }
+  .search-bar input { font-size: 0.9rem; padding: 0.5rem 0.75rem; }
+  .search-bar button { padding: 0.5rem 1rem; font-size: 0.85rem; }
+
+  .player_title { flex-direction: column; text-align: center; }
+  .player-headshot { max-width: 200px; margin: 0 auto; }
+  .player-title-info-wrapper { align-items: center; }
+
+  .player-details-grid { grid-template-columns: 1fr; justify-items: center; }
+
+  .stat-box {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .player_title-info > h2 { font-size: 1.5rem; }
+  .player_title-info > h3 { font-size: 0.9rem; }
 }
