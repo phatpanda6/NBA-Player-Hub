@@ -78,7 +78,6 @@ export default function NbaPlayerSummary() {
       }
     } catch (err) {
       console.error("Failed to search player:", err);
-
       if (err.response?.status === 429) {
         setError("Too many requests to the API. Please wait and try again.");
       } else {
@@ -117,7 +116,9 @@ export default function NbaPlayerSummary() {
               </section>
             </div>
 
-            <div className={`player-details-bg-wrapper ${teamClasses.detailsBg}`}>
+            <div
+              className={`player-details-bg-wrapper ${teamClasses.detailsBg}`}
+            >
               <section className="player-details-bg container">
                 <PlayerDetails player={player} teamClasses={teamClasses} />
               </section>
